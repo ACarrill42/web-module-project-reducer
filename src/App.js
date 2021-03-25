@@ -3,6 +3,7 @@ import {initialState} from './reducers/index';
 import reducer from './reducers/index';
 import {applyNumber} from './actions/index';
 import {changeOperation} from './actions/index';
+import {clearDisplay} from './actions/index';
 import {addOne} from './actions/index';
 import './App.css';
 
@@ -25,6 +26,10 @@ function App() {
 
   const operatorHandler = (operator) => {
     dispatch(changeOperation(operator))
+  }
+
+  const clearHandler = () => {
+    dispatch(clearDisplay())
   }
   return (
     <div className="App">
@@ -73,7 +78,7 @@ function App() {
             </div>
 
             <div className="row ce_button">
-              <CalcButton value={"CE"}/>
+              <CalcButton onClick ={() => clearHandler()}value={"CE"}/>
             </div>
 
           </form>
