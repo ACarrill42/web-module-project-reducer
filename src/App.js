@@ -2,6 +2,7 @@ import React, {useReducer} from 'react';
 import {initialState} from './reducers/index';
 import reducer from './reducers/index';
 import {applyNumber} from './actions/index';
+import {changeOperation} from './actions/index';
 import {addOne} from './actions/index';
 import './App.css';
 
@@ -16,7 +17,15 @@ function App() {
   //   dispatch(addOne());
   // }
   
-  const eventHandler = (number) => {dispatch(applyNumber(number))};
+  const eventHandler = (number) => {
+    dispatch(applyNumber(number))
+    console.log(number)
+  };
+  console.log(state)
+
+  const operatorHandler = (operator) => {
+    dispatch(changeOperation(operator))
+  }
   return (
     <div className="App">
       <nav className="navbar navbar-dark bg-dark">
@@ -40,27 +49,27 @@ function App() {
             </div>
 
             <div className="row">
-              <CalcButton onClick = {eventHandler(1)}value={1}/>
-              <CalcButton onClick = {eventHandler(2)}value={2}/>
-              <CalcButton onClick = {eventHandler(3)}value={3}/>
+              <CalcButton onClick = {() => {eventHandler(1)}}value={1}/>
+              <CalcButton onClick = {() => {eventHandler(2)}}value={2}/>
+              <CalcButton onClick = {() => eventHandler(3)}value={3}/>
             </div>
 
             <div className="row">
-              <CalcButton onClick = {eventHandler(4)}value={4}/>
-              <CalcButton onClick = {eventHandler(5)}value={5}/>
-              <CalcButton onClick = {eventHandler(6)}value={6}/>
+              <CalcButton onClick = {() => eventHandler(4)}value={4}/>
+              <CalcButton onClick = {() => eventHandler(5)}value={5}/>
+              <CalcButton onClick = {() =>eventHandler(6)}value={6}/>
             </div>
 
             <div className="row">
-              <CalcButton onClick = {eventHandler(7)}value={7}/>
-              <CalcButton onClick = {eventHandler(8)}value={8}/>
-              <CalcButton onClick = {eventHandler(9)}value={9}/>
+              <CalcButton onClick = {() => eventHandler(7)}value={7}/>
+              <CalcButton onClick = {() => eventHandler(8)}value={8}/>
+              <CalcButton onClick = {() => eventHandler(9)}value={9}/>
             </div>
 
             <div className="row">
-              <CalcButton value={"+"}/>
-              <CalcButton value={"*"}/>
-              <CalcButton value={"-"}/>
+              <CalcButton onClick ={() => operatorHandler('+')}value={"+"}/>
+              <CalcButton onClick ={() => operatorHandler('*')}value={"*"}/>
+              <CalcButton onClick ={() => operatorHandler('-')}value={"-"}/>
             </div>
 
             <div className="row ce_button">
